@@ -37,6 +37,12 @@ func main() {
 		logs.Error("init kafka failed, err: %v\n", err)
 		return
 	}
+
+	err = initEtcd(appConfig.etcdAddr, appConfig.etcdKey, appConfig.localIP)
+	if err != nil {
+		logs.Error("init etcd failed, err: %v\n", err)
+		return
+	}
 	logs.Debug("initialize all success.")
 
 	err = serverRun()
